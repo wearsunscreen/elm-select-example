@@ -10,26 +10,17 @@ import Time exposing (Time)
 
 type alias Model =
     { randomSeed : Maybe Seed
-    , startTime : Maybe Time
     , selection1 : Maybe String
     , selection2 : Maybe String
-    , openDropDown : OpenDropDown
+    , startTime : Maybe Time
     }
 
 
 type Msg
     = CloseWelcomeScreen
-    | StartApp Time
-    | Toggle OpenDropDown
     | Dropdown1Picked String
     | Dropdown2Picked String
-    | Blur
-
-
-type OpenDropDown
-    = AllClosed
-    | Dropdown1DropDown
-    | Dropdown2DropDown
+    | StartApp Time
 
 
 items : List ( String, String -> String )

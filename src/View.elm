@@ -13,7 +13,7 @@ helloWorld =
 
 mainStyle : List ( String, String )
 mainStyle =
-    [ ( "padding", "16px" )
+    [ ( "padding", "20px" )
     ]
 
 
@@ -57,9 +57,9 @@ viewStuff model =
         div [ style mainStyle ]
             [ h2 [] [ text helloWorld ]
             , viewSelect Dropdown1Picked fs
-            , h2 [] [ helloWorld |> selected1 |> monitor ]
+            , h2 [] [ helloWorld |> selected1 |> Html.text ]
             , viewSelect Dropdown2Picked fs
-            , h2 [] [ helloWorld |> selected1 |> selected2 |> monitor ]
+            , h2 [] [ helloWorld |> selected1 |> selected2 |> Html.text ]
             ]
 
 
@@ -73,8 +73,3 @@ viewSelect msg data =
         select
             [ onInput msg ]
             (List.map optionize data)
-
-
-monitor : String -> Html Msg
-monitor v =
-    Html.text v
