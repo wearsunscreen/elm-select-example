@@ -39,27 +39,27 @@ viewStuff : Model -> Html Msg
 viewStuff model =
     let
         fs =
-            functions
+            items
                 |> List.map Tuple.first
 
-        selectedFunction1 =
-            functions
+        selected1 =
+            items
                 |> Dict.fromList
-                |> Dict.get (Maybe.withDefault "" model.function1)
+                |> Dict.get (Maybe.withDefault "" model.selection1)
                 |> Maybe.withDefault (identity)
 
-        selectedFunction2 =
-            functions
+        selected2 =
+            items
                 |> Dict.fromList
-                |> Dict.get (Maybe.withDefault "" model.function2)
+                |> Dict.get (Maybe.withDefault "" model.selection2)
                 |> Maybe.withDefault (identity)
     in
         div [ style mainStyle ]
             [ h2 [] [ text helloWorld ]
-            , viewSelect Device1Picked fs
-            , h2 [] [ helloWorld |> selectedFunction1 |> monitor ]
-            , viewSelect Device2Picked fs
-            , h2 [] [ helloWorld |> selectedFunction1 |> selectedFunction2 |> monitor ]
+            , viewSelect Dropdown1Picked fs
+            , h2 [] [ helloWorld |> selected1 |> monitor ]
+            , viewSelect Dropdown2Picked fs
+            , h2 [] [ helloWorld |> selected1 |> selected2 |> monitor ]
             ]
 
 
@@ -70,8 +70,7 @@ viewSelect msg data =
             option [ value x ]
                 [ text x ]
     in
-        Debug.log "view"
-            select
+        select
             [ onInput msg ]
             (List.map optionize data)
 

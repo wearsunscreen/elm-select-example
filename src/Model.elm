@@ -11,8 +11,8 @@ import Time exposing (Time)
 type alias Model =
     { randomSeed : Maybe Seed
     , startTime : Maybe Time
-    , function1 : Maybe DeviceName
-    , function2 : Maybe DeviceName
+    , selection1 : Maybe String
+    , selection2 : Maybe String
     , openDropDown : OpenDropDown
     }
 
@@ -21,31 +21,19 @@ type Msg
     = CloseWelcomeScreen
     | StartApp Time
     | Toggle OpenDropDown
-    | Device1Picked DeviceName
-    | Device2Picked DeviceName
+    | Dropdown1Picked String
+    | Dropdown2Picked String
     | Blur
 
 
 type OpenDropDown
     = AllClosed
-    | Device1DropDown
-    | Device2DropDown
+    | Dropdown1DropDown
+    | Dropdown2DropDown
 
 
-
--- simple types so we can read the code better
-
-
-type alias DeviceName =
-    String
-
-
-
--- global constants/ config
-
-
-functions : List ( DeviceName, String -> String )
-functions =
+items : List ( String, String -> String )
+items =
     [ ( "noChange", identity )
     , ( "allCaps", allCaps )
     , ( "allLower", allLower )

@@ -9,8 +9,8 @@ import Mouse
 
 init : ( Model, Cmd Msg )
 init =
-    { function1 = Nothing
-    , function2 = Nothing
+    { selection1 = Nothing
+    , selection2 = Nothing
     , openDropDown = AllClosed
     , randomSeed = Nothing
     , startTime = Nothing
@@ -55,16 +55,16 @@ update msg model =
                 }
                     ! []
 
-        Device1Picked pickedDevice1 ->
+        Dropdown1Picked pickedDropdown1 ->
             { model
-                | function1 = Just pickedDevice1
+                | selection1 = Just pickedDropdown1
                 , openDropDown = AllClosed
             }
                 ! []
 
-        Device2Picked pickedDevice2 ->
+        Dropdown2Picked pickedDropdown2 ->
             { model
-                | function2 = Just pickedDevice2
+                | selection2 = Just pickedDropdown2
                 , openDropDown = AllClosed
             }
                 ! []
